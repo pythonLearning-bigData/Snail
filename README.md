@@ -48,5 +48,7 @@ pip install pyQuery
 
 ```shell
 scrapy crawl quotes
+# 将解析后的数据保存到文件中
+scrapy crawl second_hand_house -o data/second-hand-house.json
 ```
 > quotes为爬虫的名称，与`Snail/spiders`目录下定义的类`name`属性相对应，后续有可能更改

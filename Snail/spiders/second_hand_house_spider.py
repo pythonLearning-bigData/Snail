@@ -2,6 +2,7 @@
 
 import scrapy
 from pyquery import PyQuery as q
+import time
 
 '''
 链家二手房
@@ -33,10 +34,13 @@ class SecondHandHouseSpilder(scrapy.Spider):
         def process(selection):
             text = d(selection).text()
             if ':' in text:
-                text = d(selection).text().split(":")[1]
+                text = text.split(":")[1]
+            if '：' in text:
+                text = text.split("：")[1]
             return text.strip()
         print(process('#introduction div.base ul li:first-child'))
-        
+        time.sleep(1)
+
         yield {
             'housing_units': process('#introduction div.base ul li:first-child'),
             'area': process('#introduction div.base ul li:nth-child(5)'),
@@ -48,13 +52,13 @@ class SecondHandHouseSpilder(scrapy.Spider):
             'age_limit': process('#introduction div.transaction ul li:nth-child(3)'),
             'type': process('#introduction div.transaction ul li:nth-child(2)'),
             'only': process('#introduction div.transaction ul li:nth-child(4)'),
-            'address': process('table.aroundInfo tr:nth - child(6)'),
-            'decade': process('table.aroundInfo tr:nth - child(2) td:nth - child(2)'),
-            'first_payment': process('table.aroundInfo tr:nth - child(4) td:first - child'),
-            'monthly_supply': process('table.aroundInfo tr:nth - child(4) td:nth - child(2)'),
-            'unit_price': process('table.aroundInfo tr:first - child'),
-            'community': process('table.aroundInfo tr:nth - child(5)'),
-            'id': process('table.aroundInfo tr:nth - child(7) td:nth - child(1)'),
+            'address': process('table.aroundInfo tr:nth-child(6)'),
+            'decade': process('table.aroundInfo tr:nth-child(2) td:nth-child(2)'),
+            'first_payment': process('table.aroundInfo tr:nth-child(4) td:first-child'),
+            'monthly_supply': process('table.aroundInfo tr:nth-child(4) td:nth-child(2)'),
+            'unit_price': process('table.aroundInfo tr:first-child'),
+            'community': process('table.aroundInfo tr:nth-child(5)'),
+            'id': process('table.aroundInfo tr:nth-child(7) td:nth-child(1)'),
             'price': process('div.content div.houseInfo div.price div.mainInfo.bold'),
             'url': response.url
         }
