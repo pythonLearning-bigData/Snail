@@ -52,3 +52,8 @@ scrapy crawl quotes
 scrapy crawl second_hand_house -o data/second-hand-house.json
 ```
 > quotes为爬虫的名称，与`Snail/spiders`目录下定义的类`name`属性相对应，后续有可能更改
+
+## 相关资源
+* [mongodb 官方文档](https://docs.mongodb.com/)
+* [Scrapy 官方教程](https://doc.scrapy.org/en/latest/intro/tutorial.html)
+* [PyMongodb 教程](https://docs.mongodb.com/getting-started/python/introduction/)

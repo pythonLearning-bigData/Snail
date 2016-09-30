@@ -3,6 +3,7 @@
 import scrapy
 from pyquery import PyQuery as q
 import time
+import pymongo
 
 '''
 链家二手房
@@ -11,6 +12,7 @@ import time
 
 class SecondHandHouseSpilder(scrapy.Spider):
     name = "second_hand_house"
+    db = pymongo.MongoClient("localhost", 27017).snail
 
     start_urls = ['http://sh.lianjia.com/ershoufang']
     count = 0
@@ -38,10 +40,11 @@ class SecondHandHouseSpilder(scrapy.Spider):
             if '：' in text:
                 text = text.split("：")[1]
             return text.strip()
+
         print(process('#introduction div.base ul li:first-child'))
         time.sleep(1)
 
-        yield {
+        self.db.restaurants.insert_one({
             'housing_units': process('#introduction div.base ul li:first-child'),
             'area': process('#introduction div.base ul li:nth-child(5)'),
             'proportion': process('#introduction div.base ul li:nth-child(5)'),
@@ -61,4 +64,4 @@ class SecondHandHouseSpilder(scrapy.Spider):
             'id': process('table.aroundInfo tr:nth-child(7) td:nth-child(1)'),
             'price': process('div.content div.houseInfo div.price div.mainInfo.bold'),
             'url': response.url
-        }
+        })
