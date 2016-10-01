@@ -3,6 +3,10 @@
 
 ## 项目架构
 Snail/spiders : 爬虫脚本
+web: web相关
+web/static :js、css资源
+web/templates: html资源
+
 ####
 ### 解析规则
 | 描述|属性| 对应的选择器|
@@ -45,11 +49,16 @@ pip install pyQuery
 ```
 
 ### 启动爬虫
-打开命令行，切换到项目根目录下，执行以下命令：
+启动爬虫
 
 ```shell
 scrapy crawl second_hand_house
 ```
+启动web
+```shell
+python run.py
+```
+
 > second_hand_house为爬虫的名称，与`Snail/spiders`目录下定义的类`name`属性相对应，后续有可能更改
 
 ## 相关资源
