@@ -44,9 +44,9 @@ class SecondHandHouseSpilder(scrapy.Spider):
         print(process('#introduction div.base ul li:first-child'))
         time.sleep(1)
 
-        self.db.restaurants.insert_one({
+        self.db.restaurants.update({'_id': process('table.aroundInfo tr:nth-child(7) td:nth-child(1)'), }, {
             'housing_units': process('#introduction div.base ul li:first-child'),
-            'area': process('#introduction div.base ul li:nth-child(5)'),
+            'area': process('#introduction div.base ul li:nth-child(3)'),
             'proportion': process('#introduction div.base ul li:nth-child(5)'),
             'level': process('#introduction div.base ul li:nth-child(2)'),
             'direction': process('#introduction div.base ul li:nth-child(4)'),
@@ -61,7 +61,7 @@ class SecondHandHouseSpilder(scrapy.Spider):
             'monthly_supply': process('table.aroundInfo tr:nth-child(4) td:nth-child(2)'),
             'unit_price': process('table.aroundInfo tr:first-child'),
             'community': process('table.aroundInfo tr:nth-child(5)'),
-            'id': process('table.aroundInfo tr:nth-child(7) td:nth-child(1)'),
+            '_id': process('table.aroundInfo tr:nth-child(7) td:nth-child(1)'),
             'price': process('div.content div.houseInfo div.price div.mainInfo.bold'),
             'url': response.url
-        })
+        }, True)

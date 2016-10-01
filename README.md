@@ -33,6 +33,7 @@ Snail/spiders : 爬虫脚本
 * 安装Python解释器
 * 安装pip
 * 安装scrapy模块
+* 安装Flask模块
 
 ```shell
 pip install scrapy
@@ -47,13 +48,13 @@ pip install pyQuery
 打开命令行，切换到项目根目录下，执行以下命令：
 
 ```shell
-scrapy crawl quotes
-# 将解析后的数据保存到文件中
-scrapy crawl second_hand_house -o data/second-hand-house.json
+scrapy crawl second_hand_house
 ```
-> quotes为爬虫的名称，与`Snail/spiders`目录下定义的类`name`属性相对应，后续有可能更改
+> second_hand_house为爬虫的名称，与`Snail/spiders`目录下定义的类`name`属性相对应，后续有可能更改
 
 ## 相关资源
 * [mongodb 官方文档](https://docs.mongodb.com/)
 * [Scrapy 官方教程](https://doc.scrapy.org/en/latest/intro/tutorial.html)
 * [PyMongodb 教程](https://docs.mongodb.com/getting-started/python/introduction/)
+* [Flask 快速入门](http://docs.jinkan.org/docs/flask/quickstart.html)
+* [Flask 教程](http://flask.pocoo.org/docs/0.11/tutorial/schema/)
